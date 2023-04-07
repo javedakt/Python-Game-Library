@@ -123,6 +123,7 @@ The winner of this game will be the best out of 5 rounds.""")
             print("Thank you for playing!")
             return
         elif play_again == "Y":
-            rps_game()
+            break
         else:
             print("Please enter Y or N!")
+    rps_game()
