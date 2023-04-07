@@ -8,6 +8,7 @@ def rps_game():
 
     try:
         rps_game_log = open("RPS_Log.txt", "x")
+        rps_game_log.close()
     except:
         pass
 
@@ -97,22 +98,20 @@ The winner of this game will be the best out of 5 rounds.""")
         if rounds == 5:
             if player1_score == player2_score:
                 print("Both players tied, no one wins.")
-                rps_game_log = open("RPS_Log.txt", "a")
-                rps_game_log.write(
-                    f"{datetime.datetime.now()} : Both players tied in RPS, no one wins\n")
-                rps_game_log.close()
+                with open("RPS_Log.txt", "a") as rps_game_log:
+                    rps_game_log.write(
+                        f"{datetime.datetime.now()} : Both players tied in RPS, no one wins\n")
+
             elif player1_score > player2_score:
                 print("PLAYER 1 wins the game!")
-                rps_game_log = open("RPS_Log.txt", "a")
-                rps_game_log.write(
-                    f"{datetime.datetime.now()} : PLAYER 1 is victorious over PLAYER 2 in RPS\n")
-                rps_game_log.close()
+                with open("RPS_Log.txt", "a") as rps_game_log:
+                    rps_game_log.write(
+                        f"{datetime.datetime.now()} : PLAYER 1 is victorious over PLAYER 2 in RPS\n")
             else:
                 print("PLAYER 2 wins the game!")
-                rps_game_log = open("RPS_Log.txt", "a")
-                rps_game_log.write(
-                    f"{datetime.datetime.now()} : PLAYER 2 is victorious over PLAYER 1 in RPS\n")
-                rps_game_log.close()
+                with open("RPS_Log.txt", "a") as rps_game_log:
+                    rps_game_log.write(
+                        f"{datetime.datetime.now()} : PLAYER 2 is victorious over PLAYER 1 in RPS\n")
             break
 
     # Another while loop incase the user doesn't input Y or N

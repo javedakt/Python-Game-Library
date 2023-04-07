@@ -7,6 +7,7 @@ def guessing_game():
     # Making log file to store wins and losses along with what time they occurred
     try:
         guessing_game_log = open("NumberGuess_Log.txt", "x")
+        guessing_game_log.close()
     except:
         pass
 
@@ -52,10 +53,9 @@ To play, enter a MIN and MAX number below""")
         # If the user guesses right, the program ends
                 if user_guess == computer_choice:
                     print("Wow! You guessed right, congrats!")
-                    guessing_game_log = open("NumberGuess_Log.txt", "a")
-                    guessing_game_log.write(
-                        f"{datetime.datetime.now()} : USER beat CPU at guessing game\n")
-                    guessing_game_log.close()
+                    with open("NumberGuess_Log.txt", "a") as guessing_game_log:
+                        guessing_game_log.write(
+                            f"{datetime.datetime.now()} : USER beat CPU at guessing game\n")
                     break
 
         # Otherwise if you're wrong, it continues until you run out of guesses. Then it insults you.
@@ -73,10 +73,9 @@ To play, enter a MIN and MAX number below""")
                             f"{random.choice(insults)} My number was {computer_choice}. You lose!")
 
                         # Simultaneously, the result is written to a log file created earlier
-                        guessing_game_log = open("NumberGuess_Log.txt", "a")
-                        guessing_game_log.write(
-                            f"{datetime.datetime.now()} : USER lost to CPU at guessing game\n")
-                        guessing_game_log.close()
+                        with open("NumberGuess_Log.txt", "a") as guessing_game_log:
+                            guessing_game_log.write(
+                                f"{datetime.datetime.now()} : USER lost to CPU at guessing game\n")
                         break
 
                     # Logic for determining whether or not the user should guess higher/lower. If (user - computer) = negative, go higher. Else, positive
